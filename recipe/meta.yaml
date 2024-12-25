@@ -10,22 +10,24 @@ source:
   sha256: b39205a48ab2678020fc58739cb973845879ed169cb5addddc9dcbf5a69aeb2b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.6
+    - python {{ python_min }}
     - pip
     - setuptools
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - altair
     - portpicker
     - tornado
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - altair_data_server
 
